@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./app.js"
+    "start": "node ./index.js"
   },
   "dependencies": {
-    "node-telegram-bot-api": "latest",
-    "cheerio": "latest"
+    "cheerio": "latest",
+    "express": "^4.14.0",
+    "node-telegram-bot-api": "latest"
   }
 }
