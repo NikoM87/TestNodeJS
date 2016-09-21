@@ -1,11 +1,16 @@
-var http = require("http");
 var express = require("express");
+var fs = require("fs");
 
 function start() {
     var app = express();
 
     app.get("/", function (req, resp) {
-        resp.send("Home page");
+        fs.readFile("./site/index.html", function (err, data) {
+            resp.writeHead(200, {'Content-Type': 'text/html'});
+            resp.write(data);
+            resp.end();
+        });
+
     });
 
     app.get("/f1", function (req, resp) {
