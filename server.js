@@ -11,6 +11,7 @@ function start() {
             resp.end();
         });
 
+        console.log("Get home page");
     });
 
     app.get("/f1", function (req, resp) {
@@ -21,8 +22,8 @@ function start() {
         resp.send("func 2");
     });
 
-    app.listen(3000, function () {
-        console.log('Example app listening on port 3000!');
+    app.listen(8888, function () {
+        console.log('Example app listening on port 8888!');
     });
 }
 
