@@ -1,9 +1,18 @@
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database("./db.sqlite");
 
+//db.run("CREATE TABLE albums (ID INTEGER PRIMARY KEY AUTOINCREMENT, title varchar)");
+//db.run("CREATE TABLE tracks (ID INTEGER PRIMARY KEY AUTOINCREMENT, seq int, albumID int, title varchar)");
+
 function execute(sql, cb) {
     db.serialize(function () {
         db.run(sql, cb);
+    });
+}
+
+function insert(artist) {
+    db.serialize(function () {
+        db.run("INSERT INTO lorem VALUES (?)")
     });
 }
 
