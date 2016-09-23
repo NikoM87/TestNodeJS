@@ -1,6 +1,8 @@
 var express = require("express");
 var bodyParser = require('body-parser');
-var db = require("./db");
+
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database("./db.sqlite");
 
 function start() {
     var app = express();
@@ -18,18 +20,22 @@ function start() {
     });
 
     app.post("/sql", function (req, resp) {
-        db.execute(req.body.expresion, function (err) {
+        db.all(req.body.expresion, function (err, rows) {
             if (err == null) {
                 var body = "SQL выполнен. <br//>" +
-                    "Выражение SQL: \" " + req.body.expresion + "\"";
+                    "Выражение SQL: \" " + req.body.expresion + "\"<br//>" +
+                    "<br//>" +
+                    "Результат:<br//>";
+
+                rows.forEach(function (row) {
+                    body += JSON.stringify(row) + "<br//>";
+                });
 
                 resp.send(body);
             } else {
                 resp.send(err.message);
             }
         });
-
-
     });
 
     app.listen(8888, function () {
