@@ -1,5 +1,6 @@
 var util = require('util');
 var FrontCommand = require("./frontCommand");
+var Error = require("../domain/error");
 
 util.inherits(UnknownCommand, FrontCommand);
 
@@ -8,7 +9,9 @@ function UnknownCommand() {
 }
 
 UnknownCommand.prototype.process = function () {
-    this.response.send("Неизвестная команда");
+    var err = new Error("Неизвестная команда");
+
+    this.response.send(JSON.stringify(err));
 };
 
 module.exports = UnknownCommand;
