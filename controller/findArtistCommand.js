@@ -1,6 +1,7 @@
 var util = require('util');
 var FrontCommand = require("./frontCommand");
 var artistMapper = require("../mapper/artistMapper");
+var Error = require("../domain/error");
 
 util.inherits(FindArtistCommand, FrontCommand);
 
