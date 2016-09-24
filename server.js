@@ -24,6 +24,7 @@ function start() {
         resp.sendfile("./site/execute.html");
     });
 
+    app.get("/sql", sqlCommand.doGet);
     app.post("/sql", sqlCommand.doPost);
 
     app.listen(8888, function () {

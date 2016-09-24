@@ -19,3 +19,22 @@ exports.doPost = function (req, resp) {
         }
     });
 };
+
+exports.doGet = function (req, resp) {
+    db.all(req.query.expresion, function (err, rows) {
+        if (err == null) {
+            var body = "SQL выполнен. <br//>" +
+                "Выражение SQL: \" " + req.query.expresion + "\"<br//>" +
+                "<br//>" +
+                "Результат:<br//>";
+
+            rows.forEach(function (row) {
+                body += JSON.stringify(row) + "<br//>";
+            });
+
+            resp.send(body);
+        } else {
+            resp.send(err.message);
+        }
+    });
+};
