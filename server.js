@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database("./db.sqlite");
 
+var frontServlet = require('./frontServlet');
 var sqlCommand = require('./controller/sqlCommand');
 
 function start() {
@@ -16,6 +17,8 @@ function start() {
 
         console.log("Get home page");
     });
+
+    app.get("/music", frontServlet.doGet);
 
     app.post("/execute", function (req, resp) {
         resp.sendfile("./site/execute.html");
